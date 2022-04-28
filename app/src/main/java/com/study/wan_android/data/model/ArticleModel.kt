@@ -1,5 +1,10 @@
 package com.study.wan_android.data.model
 
+import android.annotation.SuppressLint
+import java.text.SimpleDateFormat
+import java.util.*
+
+@SuppressLint("SimpleDateFormat")
 data class ArticleModel(
     val apkLink: String,
     val audit: Int,
@@ -34,4 +39,12 @@ data class ArticleModel(
     val userId: Int,
     val visible: Int,
     val zan: Int,
-)
+) {
+
+    val formatTime: String
+        get() = format.format(publishTime)
+
+    companion object {
+        var format: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+    }
+}
