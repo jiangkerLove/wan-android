@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.study.wan_android.ui.page.MainPage
+import com.study.wan_android.ui.page.main.MainPage
 import com.study.wan_android.ui.theme.WanandroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 

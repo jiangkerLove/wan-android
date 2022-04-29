@@ -1,33 +1,28 @@
-package com.study.wan_android.ui.page
+package com.study.wan_android.ui.page.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.ExperimentalUnitApi
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.study.wan_android.data.model.ArticleModel
-import com.study.wan_android.ui.page.model.MainPageModel
-
+import androidx.paging.compose.items
 
 @Composable
 fun MainPage(
     viewModel: MainPageModel = hiltViewModel(),
 ) {
-    val articleList = remember { viewModel.articleList }
+    val pagingItems = viewModel.articleList.collectAsLazyPagingItems()
     LazyColumn(modifier = Modifier.background(color = Color(0x455F5F5F))) {
-        items(count = articleList.size) { index ->
-            ArticleCompose(article = articleList[index])
+        items(pagingItems) { article ->
+            ArticleCompose(article = article!!)
         }
     }
 

@@ -1,18 +1,23 @@
 package com.study.wan_android.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.study.wan_android.data.model.ArticleModel
 import com.study.wan_android.data.web.WanAndroidService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.study.wan_android.ui.page.main.ArticlePageSource
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class WebRepositoryImpl @Inject constructor(
     private val service: WanAndroidService
 ) : DataRepository {
 
-    override suspend fun getArticleList(): List<ArticleModel> {
-        return withContext(Dispatchers.IO){
-            service.getIndexList(1).data.dataList
-        }
+    override fun getArticleList(): Flow<PagingData<ArticleModel>> {
+        return Pager(
+            // 分页大小
+            config = PagingConfig(20),
+            pagingSourceFactory = { ArticlePageSource(service) }
+        ).flow
     }
 }

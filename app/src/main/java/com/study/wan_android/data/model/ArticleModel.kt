@@ -2,7 +2,6 @@ package com.study.wan_android.data.model
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
-import java.util.*
 
 @SuppressLint("SimpleDateFormat")
 data class ArticleModel(
