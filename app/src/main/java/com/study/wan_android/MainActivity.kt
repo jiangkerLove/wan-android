@@ -27,11 +27,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    val routes = listOf(
-        Route.Main,
-        Route.Classify,
-        Route.Mine
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +42,7 @@ class MainActivity : ComponentActivity() {
                             BottomNavigation {
                                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                                 val currentDestination = navBackStackEntry?.destination
-                                routes.forEach { route ->
+                                Route.routes.forEach { route ->
                                     BottomNavigationItem(
                                         selected = currentDestination?.hierarchy?.any { it.route == route.route } == true,
                                         onClick = {

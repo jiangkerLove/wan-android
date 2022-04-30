@@ -13,4 +13,12 @@ sealed class Route(
     object Classify : Route("classify", R.string.tab_classify, R.drawable.ic_classify)
     object Mine : Route("mine", R.string.tab_mine, R.drawable.ic_mine)
 
+
+    companion object {
+        val routes = listOf(
+            Main,
+            Classify,
+            Mine
+        )
+    }
 }
