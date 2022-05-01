@@ -39,7 +39,7 @@ fun SystemPage(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(color = Color.White)
-                            .padding(start = 12.dp)
+                            .padding(vertical = 4.dp, horizontal = 12.dp)
                     ) {
                         Box(
                             modifier = Modifier
@@ -61,16 +61,16 @@ fun SystemPage(
                             .fillMaxWidth()
                             .padding(bottom = 4.dp)
                             .background(color = Color.White)
-                            .padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 16.dp)
+                            .padding(start = 12.dp, end = 12.dp, top = 4.dp, bottom = 16.dp)
                     ) {
                         FlowRow(mainAxisSpacing = 4.dp, crossAxisSpacing = 4.dp) {
                             system.childes.forEach {
                                 Text(
                                     text = it.name,
                                     modifier = Modifier
-                                        .clip(shape = RoundedCornerShape(8.dp))
+                                        .clip(shape = RoundedCornerShape(4.dp))
                                         .background(color = Color(0XFFF1F6FD))
-                                        .padding(4.dp),
+                                        .padding(2.dp),
                                     color = Color(0xFF6FA1F1)
                                 )
                             }
