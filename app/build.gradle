@@ -77,4 +77,6 @@ dependencies {
     testImplementation "androidx.paging:paging-common:3.1.1"
     // optional - Jetpack Compose integration
     implementation "androidx.paging:paging-compose:1.0.0-alpha14"
+
+    implementation "com.google.accompanist:accompanist-flowlayout:0.24.7-alpha"
 }
