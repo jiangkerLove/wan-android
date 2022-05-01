@@ -20,6 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.study.wan_android.ui.page.classify.SystemPage
 import com.study.wan_android.ui.page.main.MainPage
 import com.study.wan_android.ui.theme.WanandroidTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,7 +79,7 @@ class MainActivity : ComponentActivity() {
                                 MainPage()
                             }
                             composable(Route.Classify.route) {
-                                Text(text = Route.Classify.route)
+                                SystemPage()
                             }
                             composable(Route.Mine.route) {
                                 Text(text = Route.Mine.route)
