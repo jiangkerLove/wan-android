@@ -8,6 +8,7 @@ import com.study.common.data.model.ArticlePageSource
 import com.study.common.data.model.SystemGroup
 import com.study.common.data.web.WanAndroidService
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class WebRepositoryImpl @Inject constructor(
@@ -22,8 +23,8 @@ class WebRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun getSystemGroupList(): List<SystemGroup> {
-        return service.getSystemGroupList().data
+    override fun getSystemGroupList(): Flow<List<SystemGroup>> {
+        return flow { emit(service.getSystemGroupList().data) }
     }
 
 

@@ -9,5 +9,5 @@ interface DataRepository {
 
     fun getArticleList(): Flow<PagingData<ArticleModel>>
 
-    suspend fun getSystemGroupList(): List<SystemGroup>
+    fun getSystemGroupList(): Flow<List<SystemGroup>>
 }
