@@ -23,7 +23,7 @@ class ClassifyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this).get(ClassifyViewModel::class.java)
+            ViewModelProvider(this)[ClassifyViewModel::class.java]
 
         _binding = FragmentClassifyBinding.inflate(inflater, container, false)
         val root: View = binding.root

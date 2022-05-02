@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import com.study.xml_view.R
 import com.study.xml_view.databinding.FragmentMainBinding
+import com.study.xml_view.ui.main.tab.*
 
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,20 +24,36 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(MainViewModel::class.java)
-
+            ViewModelProvider(this)[MainViewModel::class.java]
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            viewPager.adapter = MainTabAdapter(this@MainFragment)
+
+            tabLayout.tabMode = TabLayout.MODE_AUTO
+
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = getTabTitle(position)
+            }.attach()
         }
-        return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getTabTitle(position: Int): String? {
+        return when (position) {
+            RECOMMEND_PAGE_INDEX -> getString(R.string.tab_recommend)
+            PLAZA_PAGE_INDEX -> getString(R.string.tab_plaza)
+            TERM_PAGE_INDEX -> getString(R.string.tab_term)
+            REPLY_PAGE_INDEX -> getString(R.string.tab_reply)
+            else -> null
+        }
     }
 }
