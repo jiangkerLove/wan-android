@@ -21,4 +21,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "wan-android"
-include ':app'
+include ':compose'
+include ':common'
