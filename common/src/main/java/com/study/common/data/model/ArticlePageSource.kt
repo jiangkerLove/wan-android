@@ -1,8 +1,7 @@
-package com.study.compose.ui.page.main
+package com.study.common.data.model
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.study.common.data.model.ArticleModel
 import com.study.common.data.web.WanAndroidService
 
 class ArticlePageSource(
