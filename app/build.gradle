@@ -70,7 +70,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.41"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
-    implementation "androidx.navigation:navigation-compose:2.4.2"
+    implementation "androidx.navigation:navigation-compose:2.5.0-beta01"
 
     implementation "androidx.paging:paging-runtime:3.1.1"
     // alternatively - without Android dependencies for tests
@@ -79,4 +79,9 @@ dependencies {
     implementation "androidx.paging:paging-compose:1.0.0-alpha14"
 
     implementation "com.google.accompanist:accompanist-flowlayout:0.24.7-alpha"
+
+    implementation "com.google.accompanist:accompanist-pager:0.24.7-alpha"
+
+    // If using indicators, also depend on
+    implementation "com.google.accompanist:accompanist-pager-indicators:0.24.7-alpha"
 }
