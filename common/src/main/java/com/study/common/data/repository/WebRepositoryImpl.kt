@@ -1,14 +1,14 @@
-package com.study.compose.ui.repository
+package com.study.common.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.study.common.data.model.ArticleModel
+import com.study.common.data.model.ArticlePageSource
 import com.study.common.data.model.SystemGroup
-import com.study.common.data.repository.DataRepository
 import com.study.common.data.web.WanAndroidService
-import com.study.compose.ui.page.main.ArticlePageSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class WebRepositoryImpl @Inject constructor(
@@ -23,8 +23,8 @@ class WebRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun getSystemGroupList(): List<SystemGroup> {
-        return service.getSystemGroupList().data
+    override fun getSystemGroupList(): Flow<List<SystemGroup>> {
+        return flow { emit(service.getSystemGroupList().data) }
     }
 
 

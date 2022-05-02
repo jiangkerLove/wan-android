@@ -1,6 +1,5 @@
-package com.study.compose.ui.repository
+package com.study.common.data.repository
 
-import com.study.common.data.repository.DataRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
