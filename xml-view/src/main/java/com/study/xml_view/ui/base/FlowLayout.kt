@@ -3,10 +3,22 @@ package com.study.xml_view.ui.base
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
+import com.study.xml_view.R
 
 class FlowLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
+
+    var horizontalGap = 0
+    var verticalGap = 0
+
+    init {
+        context.obtainStyledAttributes(attrs, R.styleable.FlowLayout).apply {
+            horizontalGap = getDimension(R.styleable.FlowLayout_horizontal_gap, 0F).toInt()
+            verticalGap = getDimension(R.styleable.FlowLayout_vertical_gap, 0F).toInt()
+            recycle()
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -31,12 +43,12 @@ class FlowLayout @JvmOverloads constructor(
 
             if (lineWidth + childWidth > measureSpecWidth) {
                 width = lineWidth.coerceAtLeast(childWidth)
-                height += lineHeight;
-                lineWidth = childWidth;
+                height += lineHeight + verticalGap
+                lineWidth = childWidth + horizontalGap
                 lineHeight = childHeight
             } else {
                 lineHeight = lineHeight.coerceAtLeast(childHeight)
-                lineWidth += childWidth
+                lineWidth += childWidth + horizontalGap
             }
 
             if (it == (childCount - 1)) {
@@ -64,13 +76,13 @@ class FlowLayout @JvmOverloads constructor(
                 child.measuredHeight + layoutParams.topMargin + layoutParams.bottomMargin
 
             if ((childWidth + lineWidth) > measuredWidth) {
-                top += lineHeight
+                top += lineHeight + verticalGap
                 start = 0
                 lineHeight = childHeight
-                lineWidth = childWidth
+                lineWidth = childWidth + horizontalGap
             } else {
                 lineHeight = lineHeight.coerceAtLeast(childHeight)
-                lineWidth += childWidth
+                lineWidth += childWidth + horizontalGap
             }
 
             val lc = start + layoutParams.marginStart
@@ -79,7 +91,7 @@ class FlowLayout @JvmOverloads constructor(
             val bc = tc + child.measuredHeight
 
             child.layout(lc, tc, rc, bc)
-            start += childWidth
+            start += childWidth + horizontalGap
         }
     }
 

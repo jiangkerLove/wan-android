@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="12dp"
     android:background="@color/white"
     android:orientation="vertical">
@@ -26,6 +27,9 @@
     <com.study.xml_view.ui.base.FlowLayout
         android:id="@+id/flow_group"
         android:layout_width="match_parent"
+        android:background="#FF0000"
+        app:vertical_gap="4dp"
+        app:horizontal_gap="4dp"
         android:layout_height="wrap_content"/>
 
 
