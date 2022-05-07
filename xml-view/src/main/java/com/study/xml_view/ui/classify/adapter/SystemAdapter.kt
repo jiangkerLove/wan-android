@@ -4,9 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.study.common.data.model.SystemGroup
 import com.study.xml_view.databinding.ItemSystemBinding
+import com.study.xml_view.ui.utils.dp
+import com.study.xml_view.ui.utils.getBgDrawable
+import com.study.xml_view.ui.utils.setTextColor
 
 class SystemAdapter(
     private val list: MutableList<SystemGroup> = mutableListOf()
@@ -22,7 +26,13 @@ class SystemAdapter(
             tvTitle.text = list[position].name
             flowGroup.removeAllViews()
             list[position].childes.forEach {
-                flowGroup.addView(TextView(root.context).apply { text = it.name })
+                flowGroup.addView(TextView(root.context).apply {
+                    text = it.name
+                    background = getBgDrawable(0XFFF1F6FD, 4.dp())
+                    setTextColor(0xFF6FA1F1)
+                    setPadding(4.dp())
+                    includeFontPadding = false
+                })
             }
 
         }
