@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.study.xml_view.databinding.FragmentSystemBinding
+import com.study.xml_view.databinding.FragmentRecyclerViewBinding
 import com.study.xml_view.ui.classify.adapter.SystemAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SystemFragment : Fragment() {
 
-    private var _binding: FragmentSystemBinding? = null
+    private var _binding: FragmentRecyclerViewBinding? = null
 
     private val binding get() = _binding!!
 
@@ -29,7 +29,7 @@ class SystemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSystemBinding.inflate(inflater, container, false)
+        _binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
