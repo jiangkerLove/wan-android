@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.study.common.data.model.ArticleModel
 import com.study.common.data.model.ArticlePageSource
+import com.study.common.data.model.NavigationGroup
 import com.study.common.data.model.SystemGroup
 import com.study.common.data.web.WanAndroidService
 import kotlinx.coroutines.flow.Flow
@@ -25,6 +26,10 @@ class WebRepositoryImpl @Inject constructor(
 
     override fun getSystemGroupList(): Flow<List<SystemGroup>> {
         return flow { emit(service.getSystemGroupList().data) }
+    }
+
+    override fun getNavigationGroupList(): Flow<List<NavigationGroup>> {
+        return flow { emit(service.getNavigationGroupList().data) }
     }
 
 

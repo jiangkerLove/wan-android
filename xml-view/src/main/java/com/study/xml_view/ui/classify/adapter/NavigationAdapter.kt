@@ -6,17 +6,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
-import com.study.common.data.model.SystemChild
-import com.study.common.data.model.SystemGroup
+import com.study.common.data.model.NavigationGroup
+import com.study.common.data.model.NavigationModel
 import com.study.xml_view.databinding.ItemSystemBinding
 import com.study.xml_view.ui.utils.dp
 import com.study.xml_view.ui.utils.getBgDrawable
 import com.study.xml_view.ui.utils.setTextColor
 
-class SystemAdapter(
-    private val list: MutableList<SystemGroup> = mutableListOf(),
-    val onItemClick: (SystemChild) -> Unit
-) : RecyclerView.Adapter<SystemAdapter.ViewHolder>() {
+class NavigationAdapter(
+    private val list: MutableList<NavigationGroup> = mutableListOf(),
+    val onItemClick: (NavigationModel) -> Unit
+) : RecyclerView.Adapter<NavigationAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemSystemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,15 +27,15 @@ class SystemAdapter(
         holder.binding.apply {
             tvTitle.text = list[position].name
             flowGroup.removeAllViews()
-            list[position].childes.forEach { child ->
+            list[position].articles.forEach { model ->
                 flowGroup.addView(TextView(root.context).apply {
-                    text = child.name
+                    text = model.title
                     background = getBgDrawable(0XFFF1F6FD, 4.dp())
                     setTextColor(0xFF6FA1F1)
                     setPadding(4.dp())
                     includeFontPadding = false
-                    setOnClickListener { _ ->
-                        onItemClick(child)
+                    setOnClickListener {
+                        onItemClick(model)
                     }
                 })
             }
@@ -44,7 +44,7 @@ class SystemAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun update(list: List<SystemGroup>) {
+    fun update(list: List<NavigationGroup>) {
         this.list.clear()
         this.list.addAll(list)
         notifyDataSetChanged()
