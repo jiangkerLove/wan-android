@@ -1,4 +1,4 @@
-package com.study.xml_view.ui.classify
+package com.study.xml_view.ui.classify.fragment
 
 import androidx.lifecycle.ViewModel
 import com.study.common.data.repository.DataRepository
@@ -6,10 +6,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ClassifyViewModel @Inject constructor(
+class NavigationViewModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
 
-    val systemGroupList = repository.getSystemGroupList()
+    val navigationGroupList = repository.getNavigationGroupList()
 
 }

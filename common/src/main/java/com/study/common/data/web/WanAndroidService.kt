@@ -2,6 +2,7 @@ package com.study.common.data.web
 
 import com.study.common.data.model.ArticleModel
 import com.study.common.data.model.ListWrapperModel
+import com.study.common.data.model.NavigationGroup
 import com.study.common.data.model.SystemGroup
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,5 +19,9 @@ interface WanAndroidService {
     //体系
     @GET("/tree/json")
     suspend fun getSystemGroupList(): ResponseModel<List<SystemGroup>>
+
+    //体系
+    @GET("/navi/json")
+    suspend fun getNavigationGroupList(): ResponseModel<List<NavigationGroup>>
 }
 
