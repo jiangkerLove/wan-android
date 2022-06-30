@@ -6,6 +6,7 @@ import com.study.common.data.model.NavigationGroup
 import com.study.common.data.model.SystemGroup
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface WanAndroidService {
     companion object {
@@ -15,6 +16,12 @@ interface WanAndroidService {
     //首页
     @GET("/article/list/{page}/json")
     suspend fun getIndexList(@Path("page") page: Int): ResponseModel<ListWrapperModel<ArticleModel>>
+
+    @GET("/user_article/list/{page}/json")
+    suspend fun getPlazaArticle(
+        @Path("page") page: Int,
+        @Query("page_size") count: Int = 10
+    ): ResponseModel<ListWrapperModel<ArticleModel>>
 
     //体系
     @GET("/tree/json")

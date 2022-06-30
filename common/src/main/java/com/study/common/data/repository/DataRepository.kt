@@ -13,4 +13,6 @@ interface DataRepository {
     fun getSystemGroupList(): Flow<List<SystemGroup>>
 
     fun getNavigationGroupList(): Flow<List<NavigationGroup>>
+
+    fun getPlazaArticleList(): Flow<PagingData<ArticleModel>>
 }

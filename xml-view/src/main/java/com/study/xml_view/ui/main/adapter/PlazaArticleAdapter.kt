@@ -7,9 +7,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.study.common.data.model.ArticleModel
-import com.study.xml_view.databinding.ItemArticleBinding
+import com.study.xml_view.databinding.ItemPlazaBinding
 
-class ArticleAdapter : PagingDataAdapter<ArticleModel, ArticleAdapter.ViewHolder>(COMPARATOR) {
+class PlazaArticleAdapter :
+    PagingDataAdapter<ArticleModel, PlazaArticleAdapter.ViewHolder>(COMPARATOR) {
 
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<ArticleModel>() {
@@ -23,10 +24,10 @@ class ArticleAdapter : PagingDataAdapter<ArticleModel, ArticleAdapter.ViewHolder
         }
     }
 
-    class ViewHolder(val binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemPlazaBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemPlazaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -38,7 +39,6 @@ class ArticleAdapter : PagingDataAdapter<ArticleModel, ArticleAdapter.ViewHolder
                 tvTitle.text = article.title
                 tvAuthor.text =
                     if (article.author.isNotEmpty()) "作者：${article.author}" else "分享者：${article.shareUser}"
-                tvClassify.text = "分类：${article.superChapterName}"
                 tvTime.text = article.formatTime
             }
         }

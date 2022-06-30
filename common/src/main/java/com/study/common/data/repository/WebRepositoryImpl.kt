@@ -20,7 +20,11 @@ class WebRepositoryImpl @Inject constructor(
         return Pager(
             // 分页大小
             config = PagingConfig(20),
-            pagingSourceFactory = { ArticlePageSource(service) }
+            pagingSourceFactory = {
+                ArticlePageSource { page ->
+                    service.getIndexList(page)
+                }
+            }
         ).flow
     }
 
@@ -32,5 +36,15 @@ class WebRepositoryImpl @Inject constructor(
         return flow { emit(service.getNavigationGroupList().data) }
     }
 
-
+    override fun getPlazaArticleList(): Flow<PagingData<ArticleModel>> {
+        return Pager(
+            // 分页大小
+            config = PagingConfig(20),
+            pagingSourceFactory = {
+                ArticlePageSource { page ->
+                    service.getPlazaArticle(page, count = 20)
+                }
+            }
+        ).flow
+    }
 }
