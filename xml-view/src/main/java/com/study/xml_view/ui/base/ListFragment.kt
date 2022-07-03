@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import com.study.xml_view.databinding.FragmentListBinding
 import com.study.xml_view.ui.main.adapter.FooterAdapter
@@ -17,7 +19,9 @@ abstract class ListFragment<T : PagingDataAdapter<*, *>> : Fragment() {
         onCreateAdapter()
     }
 
-    var _binding: FragmentListBinding? = null
+    private var _binding: FragmentListBinding? = null
+
+    var loadStateListener: ((CombinedLoadStates) -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,9 +37,6 @@ abstract class ListFragment<T : PagingDataAdapter<*, *>> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding?.apply {
-            swipeRefresh.setOnRefreshListener {
-                mAdapter.refresh()
-            }
             recyclerView.adapter =
                 mAdapter.withLoadStateFooter(FooterAdapter { mAdapter.retry() })
             mAdapter.addLoadStateListener {
@@ -43,7 +44,6 @@ abstract class ListFragment<T : PagingDataAdapter<*, *>> : Fragment() {
                     is LoadState.NotLoading -> {
                         progressBar.visibility = View.INVISIBLE
                         recyclerView.visibility = View.VISIBLE
-                        swipeRefresh.isRefreshing = false
                     }
                     is LoadState.Loading -> {
                         progressBar.visibility = View.VISIBLE
@@ -52,7 +52,6 @@ abstract class ListFragment<T : PagingDataAdapter<*, *>> : Fragment() {
                     else -> {
                         val state = it.refresh as LoadState.Error
                         progressBar.visibility = View.INVISIBLE
-                        swipeRefresh.isRefreshing = false
                         Toast.makeText(
                             requireContext(),
                             "Load Error: ${state.error.message}",
@@ -61,8 +60,13 @@ abstract class ListFragment<T : PagingDataAdapter<*, *>> : Fragment() {
                             .show()
                     }
                 }
+                loadStateListener?.invoke(it)
             }
         }
+    }
+
+    fun refresh() {
+        mAdapter.refresh()
     }
 
     abstract fun onCreateAdapter(): T

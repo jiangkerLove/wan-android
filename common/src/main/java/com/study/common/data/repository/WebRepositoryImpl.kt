@@ -3,10 +3,7 @@ package com.study.common.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.study.common.data.model.ArticleModel
-import com.study.common.data.model.ArticlePageSource
-import com.study.common.data.model.NavigationGroup
-import com.study.common.data.model.SystemGroup
+import com.study.common.data.model.*
 import com.study.common.data.web.WanAndroidService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -26,6 +23,10 @@ class WebRepositoryImpl @Inject constructor(
                 }
             }
         ).flow
+    }
+
+    override fun getBanners(): Flow<List<BannerModel>> {
+        return flow { emit(service.getBanner().data) }
     }
 
     override fun getSystemGroupList(): Flow<List<SystemGroup>> {

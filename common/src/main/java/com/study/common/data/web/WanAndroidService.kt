@@ -1,9 +1,6 @@
 package com.study.common.data.web
 
-import com.study.common.data.model.ArticleModel
-import com.study.common.data.model.ListWrapperModel
-import com.study.common.data.model.NavigationGroup
-import com.study.common.data.model.SystemGroup
+import com.study.common.data.model.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -16,6 +13,10 @@ interface WanAndroidService {
     //首页
     @GET("/article/list/{page}/json")
     suspend fun getIndexList(@Path("page") page: Int): ResponseModel<ListWrapperModel<ArticleModel>>
+
+    //banner
+    @GET("/banner/json")
+    suspend fun getBanner(): ResponseModel<List<BannerModel>>
 
     @GET("/user_article/list/{page}/json")
     suspend fun getPlazaArticle(

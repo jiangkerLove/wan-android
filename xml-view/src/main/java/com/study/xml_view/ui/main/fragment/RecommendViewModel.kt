@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.study.common.data.model.ArticleModel
+import com.study.common.data.model.BannerModel
 import com.study.common.data.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +18,10 @@ class RecommendViewModel @Inject constructor(
 
     fun getArticleList(): Flow<PagingData<ArticleModel>> {
         return repository.getArticleList().cachedIn(viewModelScope)
+    }
+
+    fun getBanners(): Flow<List<BannerModel>> {
+        return repository.getBanners()
     }
 
 }
