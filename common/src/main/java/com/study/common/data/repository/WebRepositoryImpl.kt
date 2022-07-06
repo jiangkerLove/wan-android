@@ -13,14 +13,12 @@ class WebRepositoryImpl @Inject constructor(
     private val service: WanAndroidService
 ) : DataRepository {
 
-    override fun getArticleList(): Flow<PagingData<ArticleModel>> {
+    override fun getArticleList(): Flow<PagingData<Any>> {
         return Pager(
             // 分页大小
             config = PagingConfig(20),
             pagingSourceFactory = {
-                ArticlePageSource { page ->
-                    service.getIndexList(page)
-                }
+                ArticleWithBannerSource(service)
             }
         ).flow
     }

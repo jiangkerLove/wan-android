@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface DataRepository {
 
-    fun getArticleList(): Flow<PagingData<ArticleModel>>
+    fun getArticleList(): Flow<PagingData<Any>>
 
     fun getBanners(): Flow<List<BannerModel>>
 
