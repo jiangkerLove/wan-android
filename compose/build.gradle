@@ -8,6 +8,19 @@ plugins {
 android {
     compileSdk 31
 
+    signingConfigs {
+        release {
+            //别名
+            keyAlias "key-jfp"
+            keyPassword "jfp-key"
+            storeFile file('../keystore-jiangker')
+            //路径
+            storePassword "jfp-key"
+            v1SigningEnabled true       //对JAR签名
+            v2SigningEnabled true       //对APK签名
+        }
+    }
+
     defaultConfig {
         applicationId "com.study.compose"
         minSdk 21
@@ -19,6 +32,7 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
