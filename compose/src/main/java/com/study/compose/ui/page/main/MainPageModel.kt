@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.study.common.data.model.ArticleModel
 import com.study.common.data.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +14,7 @@ class MainPageModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
 
-    val articleList: Flow<PagingData<ArticleModel>>
+    val articleList: Flow<PagingData<Any>>
         get() {
             return repository.getArticleList().cachedIn(viewModelScope)
         }

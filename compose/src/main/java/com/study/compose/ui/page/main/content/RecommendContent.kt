@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import com.study.common.data.model.ArticleModel
 import com.study.compose.ui.page.main.MainPageModel
 
 @Composable
@@ -23,14 +24,16 @@ fun RecommendContent(viewModel: MainPageModel, state: LazyListState) {
         modifier = Modifier.background(color = Color(0x455F5F5F))
     ) {
         items(pagingItems) { article ->
-            ArticleCompose(article = article!!)
+            if (article is ArticleModel) {
+                ArticleCompose(article = article)
+            }
         }
     }
 
 }
 
 @Composable
-fun ArticleCompose(article: com.study.common.data.model.ArticleModel) {
+fun ArticleCompose(article: ArticleModel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
